@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Status Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vanilla.css') }}">
+        <link rel="icon" type="image/svg" href="{{ url_for('static', filename='coffee.svg') }}">
+    </head>
+    <body>
+        <div id="top" class="page" role="document">
+            <header role="banner">
+                <h1>Status Dashboard</h1>
+                <p>Please contact the webmaster for any discrepancies.</p>
+            </header>
+            <header><h1>Services</h1></header>
+            <table>
+                <thead>
+                    <th>service</th>
+                    <th>status</th>
+                    <th>notes</th>
+                </thead>
+                <tbody>
+                    {% for service in services %}
+                    <tr>
+                        <td>{{ service.url }}</td>
+                        {% if service.status == 200 %}
+                        <td><mark-good>{{ service.status }}</mark-good></td>
+                        {% else %}
+                        <td><mark-bad>{{ service.status }}</mark-bad></td>
+                        {% endif %}
+                        <td>{{ service.notes }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
